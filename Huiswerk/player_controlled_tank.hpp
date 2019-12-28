@@ -8,7 +8,7 @@ public:
 		{}
 
 	//this function updates the position of the tank and the rotation 
-	void update(sf::RenderWindow & window) override{
+	void update(sf::RenderWindow & window, std::vector<bullet *> & bullets) override{
 		float speed = 1.5;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
 			position.y -= speed;
@@ -42,6 +42,9 @@ public:
 			vehicle.setRotation(0);
 		}
 		rotate_turret(sf::Mouse::getPosition(window));
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F)) {
+			bullets.push_back(shoot());
+		}
 	}
 
 };

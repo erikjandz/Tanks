@@ -2,14 +2,21 @@
 
 int main() {
 	auto tank = player_controlled_tank();
+	std::vector<bullet *> bullets;
 	sf::RenderWindow window{ sf::VideoMode{ 640, 480 }, "SFML window" };
 	while (window.isOpen()) {
 		window.display();
 		sf::sleep(sf::milliseconds(20));
 
 		window.clear();
-		tank.update(window);
+		tank.update(window, bullets);
+		for (auto& bullet : bullets) {
+			bullet->update();
+		}
 		tank.draw(window);
+		for (auto& bullet : bullets) {
+			bullet->draw(window);
+		}
 
 		sf::Event event;
 		while (window.pollEvent(event)) {

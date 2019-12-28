@@ -46,11 +46,11 @@ public:
 		}
 	}
 
-	virtual void update(sf::RenderWindow & window) {};
+	virtual void update(sf::RenderWindow & window, std::vector<bullet *> & bullets) {};
 
 	//function that will return a bullet
-	bullet shoot() {
-
+	bullet * shoot() {
+		return new bullet(position);
 	}
 
 	sf::Texture texture;
