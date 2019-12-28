@@ -6,6 +6,5 @@
   <ItemGroup>
     <ClInclude Include="..\tank.hpp" />
     <ClInclude Include="..\player_controlled_tank.hpp" />
-    <ClInclude Include="..\drawable.hpp" />
   </ItemGroup>
 </Project>

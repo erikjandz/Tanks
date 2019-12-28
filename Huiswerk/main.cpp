@@ -8,7 +8,7 @@ int main() {
 		sf::sleep(sf::milliseconds(20));
 
 		window.clear();
-		tank.rotate_turret(sf::Mouse::getPosition(window));
+		tank.update(window);
 		tank.draw(window);
 
 		sf::Event event;

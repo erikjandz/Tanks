@@ -22,7 +22,6 @@
     <ClCompile Include="..\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\drawable.hpp" />
     <ClInclude Include="..\tank.hpp" />
     <ClInclude Include="..\player_controlled_tank.hpp" />
   </ItemGroup>
