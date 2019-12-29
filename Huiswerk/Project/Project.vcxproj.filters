@@ -6,6 +6,7 @@
     <ClCompile Include="..\player_controlled_tank.cpp" />
     <ClCompile Include="..\bullet.cpp" />
     <ClCompile Include="..\drawable.cpp" />
+    <ClCompile Include="..\wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\tank.hpp" />
@@ -13,5 +14,6 @@
     <ClInclude Include="..\bullet.hpp" />
     <ClInclude Include="..\drawable.hpp" />
     <ClInclude Include="..\game_data.hpp" />
+    <ClInclude Include="..\wall.hpp" />
   </ItemGroup>
 </Project>

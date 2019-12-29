@@ -1,5 +1,4 @@
 #pragma once
-#include "drawable.hpp"
 #include "bullet.hpp"
 #include <string>
 
@@ -12,10 +11,14 @@ public:
 	//function that will draw all components of the tank and set the rotation and position
 	void draw(sf::RenderWindow& window)override;
 
+	virtual void update(sf::RenderWindow & window, std::vector<bullet *> & bullets) {};
+
+	//make sure the tank doesn't drive into walls
+	void interact(wall * wall);
+
+protected:
 	//function will rotate the turret so it will be directed to the parameter position
 	void rotate_turret(sf::Vector2i point);
-
-	virtual void update(sf::RenderWindow & window, std::vector<bullet *> & bullets) {};
 
 	//function that will create and return a bullet
 	bullet* shoot();

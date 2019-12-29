@@ -23,6 +23,34 @@ void bullet::update() {
 	sprite.setPosition(position);
 }
 
+void bullet::interact(wall* wall) {
+	if (sprite.getGlobalBounds().intersects(wall->sprite.getGlobalBounds())) {
+		float differencex = position.x - wall->position.x;
+		float differencey = position.y - wall->position.y;
+		if (differencex < 0) {
+			differencex *= -1;
+		}
+		if (differencey < 0) {
+			differencey *= -1;
+		}
+		//if the bullet bounces left or right
+		if (differencex - 1 > differencey) {
+			movement.x *= -1;
+			sprite.setRotation(sprite.getRotation() + 90);
+		//if the bullet bounces top or bottom
+		}else if (differencex < differencey - 1) {
+			movement.y *= -1;
+			sprite.setRotation(sprite.getRotation() * -1);
+		//if it hits a corner
+		}else {
+			movement.x *= -1;
+			movement.y *= -1;
+			sprite.setRotation(sprite.getRotation() * -1);
+			
+		}
+	}
+}
+
 sf::Vector2f bullet::calculate_starting_position(sf::Vector2f position_tank, int16_t rotation) {
 	float length_turret = 32.5;
 	float positionx = cos(rotation * 3.14159265 / 180) * length_turret;

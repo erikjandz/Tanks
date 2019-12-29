@@ -28,6 +28,12 @@ void tank::draw(sf::RenderWindow& window){
 	window.draw(turret);
 };
 
+void tank::interact(wall * wall){
+	if (vehicle.getGlobalBounds().intersects(wall->sprite.getGlobalBounds())) {
+		std::cout << "kanker";
+	}
+}
+
 void tank::rotate_turret(sf::Vector2i point) {
 	auto deltax = point.x - turret.getPosition().x;
 	auto deltay = point.y - turret.getPosition().y;
