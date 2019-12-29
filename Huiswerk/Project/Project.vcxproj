@@ -19,11 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\bullet.cpp" />
+    <ClCompile Include="..\drawable.cpp" />
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\player_controlled_tank.cpp" />
+    <ClCompile Include="..\tank.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\bullet.hpp" />
     <ClInclude Include="..\drawable.hpp" />
+    <ClInclude Include="..\game_data.hpp" />
     <ClInclude Include="..\tank.hpp" />
     <ClInclude Include="..\player_controlled_tank.hpp" />
   </ItemGroup>

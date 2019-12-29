@@ -2,11 +2,16 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\tank.cpp" />
+    <ClCompile Include="..\player_controlled_tank.cpp" />
+    <ClCompile Include="..\bullet.cpp" />
+    <ClCompile Include="..\drawable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\tank.hpp" />
     <ClInclude Include="..\player_controlled_tank.hpp" />
     <ClInclude Include="..\bullet.hpp" />
     <ClInclude Include="..\drawable.hpp" />
+    <ClInclude Include="..\game_data.hpp" />
   </ItemGroup>
 </Project>
