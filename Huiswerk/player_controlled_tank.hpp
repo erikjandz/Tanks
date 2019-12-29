@@ -42,7 +42,7 @@ public:
 			vehicle.setRotation(0);
 		}
 		rotate_turret(sf::Mouse::getPosition(window));
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F)) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			bullets.push_back(shoot());
 		}
 	}

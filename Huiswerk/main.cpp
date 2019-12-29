@@ -1,4 +1,5 @@
 #include "player_controlled_tank.hpp"
+#include <iostream>
 
 int main() {
 	auto tank = player_controlled_tank();
@@ -8,8 +9,9 @@ int main() {
 		window.display();
 		sf::sleep(sf::milliseconds(20));
 
-		window.clear();
+		window.clear(sf::Color::White);
 		tank.update(window, bullets);
+		//std::cout << "position = " << tank.position.x << " " << tank.position.y << "\n" << "rotation" << tank.turret_rotation << "\n";
 		for (auto& bullet : bullets) {
 			bullet->update();
 		}

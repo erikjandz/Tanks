@@ -2,7 +2,7 @@
 #include "drawable.hpp"
 #include "bullet.hpp"
 #include <string>
-#include <cmath>
+
 
 class tank: public drawable {
 public:
@@ -48,9 +48,9 @@ public:
 
 	virtual void update(sf::RenderWindow & window, std::vector<bullet *> & bullets) {};
 
-	//function that will return a bullet
+	//function that will create and return a bullet
 	bullet * shoot() {
-		return new bullet(position);
+		return new bullet(position, turret_rotation);
 	}
 
 	sf::Texture texture;
