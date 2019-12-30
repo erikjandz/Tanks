@@ -16,6 +16,8 @@ public:
 	//make sure the tank doesn't drive into walls
 	void interact(wall * wall);
 
+	void interact(bullet* bullet);
+
 protected:
 	//function will rotate the turret so it will be directed to the parameter position
 	void rotate_turret(sf::Vector2i point);

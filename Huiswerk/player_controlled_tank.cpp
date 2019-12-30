@@ -6,7 +6,7 @@ player_controlled_tank::player_controlled_tank():
 {}
 
 void player_controlled_tank::update(sf::RenderWindow& window, std::vector<bullet*>& bullets){
-	float speed = 1.5;
+	float speed = 2;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
 		position.y -= speed;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
@@ -43,8 +43,15 @@ void player_controlled_tank::update(sf::RenderWindow& window, std::vector<bullet
 		position.x += speed;
 		vehicle.setRotation(0);
 	}
+
 	rotate_turret(sf::Mouse::getPosition(window));
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+	//shoot if you can
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && cooldown == 0) {
 		bullets.push_back(shoot());
+		cooldown = 300;
+	}
+	if (cooldown > 0) {
+		cooldown -= 20;
 	}
 }

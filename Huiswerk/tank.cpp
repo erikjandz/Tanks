@@ -28,9 +28,47 @@ void tank::draw(sf::RenderWindow& window){
 	window.draw(turret);
 };
 
+//make sure you can't drive in a wall
 void tank::interact(wall * wall){
 	if (vehicle.getGlobalBounds().intersects(wall->sprite.getGlobalBounds())) {
-		std::cout << "kanker";
+		float differencex = position.x - wall->position.x;
+		float differencey = position.y - wall->position.y;
+		//tank is right of wall
+		if (differencex >= differencey && differencex >= differencey * -1) {
+			while (vehicle.getGlobalBounds().intersects(wall->sprite.getGlobalBounds())) {
+				position.x ++;
+				vehicle.setPosition(position);
+			}
+		}
+		//tank is left of wall
+		else if (differencex <= differencey && differencex <= differencey * -1) {
+			while (vehicle.getGlobalBounds().intersects(wall->sprite.getGlobalBounds())) {
+				position.x --;
+				vehicle.setPosition(position);
+			}
+		}
+		//tank is on top of wall
+		else if (differencey < differencex && differencey < differencex * -1) {
+			while (vehicle.getGlobalBounds().intersects(wall->sprite.getGlobalBounds())) {
+				position.y --;
+				vehicle.setPosition(position);
+			}
+		}
+		//tank is under the wall
+		else if (differencey > differencex && differencey > differencex * -1) {
+			while (vehicle.getGlobalBounds().intersects(wall->sprite.getGlobalBounds())) {
+				position.y ++;
+				vehicle.setPosition(position);
+			}
+		}
+	}
+}
+
+//kill the tank and the bullet if you collide
+void tank::interact(bullet* bullet) {
+	if (vehicle.getGlobalBounds().intersects(bullet->sprite.getGlobalBounds())) {
+		bullet->death_flag = true;
+		death_flag = true;
 	}
 }
 

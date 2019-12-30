@@ -15,4 +15,6 @@ public:
 	virtual void update() {}
 
 	sf::Vector2f position;
+
+	bool death_flag = false;
 };
