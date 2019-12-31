@@ -10,7 +10,8 @@ void update(sf::RenderWindow& window, game_data& game_data1) {
 	for (auto & wall : game_data1.walls) {
 		game_data1.my_tank.interact(wall);
 	}
-	//let the bullets move
+
+	//update the bullets
 	for (auto& bullet : game_data1.bullets) {
 		bullet->update();
 	}
@@ -21,8 +22,14 @@ void update(sf::RenderWindow& window, game_data& game_data1) {
 		for (auto& wall : game_data1.walls) {
 			bullet->interact(wall);
 		}
+
 		//interact with the player's tank
 		game_data1.my_tank.interact(bullet);
+		
+		//interact with enemy tanks;
+		for (auto& enemy_tank : game_data1.enemy_tanks) {
+			enemy_tank->interact(bullet);
+		}
 
 		//interact with other bullets
 		for (auto& bullet2 : game_data1.bullets) {
@@ -37,13 +44,27 @@ void update(sf::RenderWindow& window, game_data& game_data1) {
 				std::end(game_data1.bullets));
 		}
 	}
-	
+
+	//update the enemy tanks
+	for (auto& enemy_tank : game_data1.enemy_tanks) {
+		//update the tanks
+		enemy_tank->update(game_data1.my_tank.position, game_data1.bullets);
+
+		if (enemy_tank->death_flag) {
+			game_data1.enemy_tanks.erase(std::remove(std::begin(game_data1.enemy_tanks), std::end(game_data1.enemy_tanks), enemy_tank),
+				std::end(game_data1.enemy_tanks));
+		}
+	}
 }
 
 //render the game
 void render(sf::RenderWindow& window, game_data& game_data1){
 	//draw the player's tank
 	game_data1.my_tank.draw(window);
+	//draw the enemy tanks
+	for (auto& enemy_tank : game_data1.enemy_tanks) {
+		enemy_tank->draw(window);
+	}
 	//draw the bullets
 	for (auto& bullet : game_data1.bullets) {
 		bullet->draw(window);
@@ -59,6 +80,7 @@ int main() {
 	game_data game_data1 = game_data();
 	game_data1.walls.push_back(new wall{ sf::Vector2f{ 300,300 } });
 	game_data1.walls.push_back(new wall{ sf::Vector2f{ 100,300 } });
+	game_data1.enemy_tanks.push_back(new stationair_grey_tank(sf::Vector2f{ 500, 300 }));
 	sf::RenderWindow window{ sf::VideoMode{ 640, 480 }, "SFML window" };
 	while (window.isOpen()) {
 		window.display();
@@ -72,7 +94,7 @@ int main() {
 			window.close();
 			break;
 		}
-
+		
 		sf::Event event;
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {

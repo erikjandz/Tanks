@@ -16,11 +16,12 @@ public:
 	//make sure the tank doesn't drive into walls
 	void interact(wall * wall);
 
+	//kill the tank and the bullet if you collide
 	void interact(bullet* bullet);
 
 protected:
 	//function will rotate the turret so it will be directed to the parameter position
-	void rotate_turret(sf::Vector2i point);
+	void rotate_turret(sf::Vector2f position_to_look_at);
 
 	//function that will create and return a bullet
 	bullet* shoot();

@@ -9,7 +9,7 @@ bullet::bullet(sf::Vector2f position_tank, int16_t rotation, float speed, int8_t
 	texture.loadFromImage(image);
 	sprite.setTexture(texture);
 	sprite.setScale(sf::Vector2f(0.1, 0.1));
-	sprite.setOrigin(sf::Vector2f{ 0, 25 });
+	sprite.setOrigin(sf::Vector2f{ 63, 25 });
 	sprite.setPosition(position);
 	sprite.setRotation(rotation);
 	movement = calculate_movement(speed, rotation);
@@ -35,12 +35,12 @@ void bullet::interact(wall* wall) {
 			differencey *= -1;
 		}
 		//if the bullet bounces left or right
-		if (differencex - 1 > differencey) {
+		if (differencex > differencey) {
 			movement.x *= -1;
 			sprite.setRotation(sprite.getRotation() * -1 + 180);
 			bounce -= 1;
 		//if the bullet bounces top or bottom
-		}else if (differencex < differencey - 1) {
+		}else if (differencex < differencey) {
 			movement.y *= -1;
 			sprite.setRotation(sprite.getRotation() * -1);
 			bounce -= 1;
@@ -64,7 +64,8 @@ void bullet::interact(bullet* bullet) {
 }
 
 sf::Vector2f bullet::calculate_starting_position(sf::Vector2f position_tank, int16_t rotation) {
-	float length_turret = 32.5;
+	//length turret is the length of the turret from it's origin plus the distance to the origin of the bullet
+	float length_turret = 32.5 + 6.3;
 	float positionx = cos(rotation * 3.14159265 / 180) * length_turret;
 	float positiony = sin(rotation * 3.14159265 / 180) * length_turret;
 	return position_tank + sf::Vector2f{ positionx, positiony };

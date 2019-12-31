@@ -28,7 +28,6 @@ void tank::draw(sf::RenderWindow& window){
 	window.draw(turret);
 };
 
-//make sure you can't drive in a wall
 void tank::interact(wall * wall){
 	if (vehicle.getGlobalBounds().intersects(wall->sprite.getGlobalBounds())) {
 		float differencex = position.x - wall->position.x;
@@ -64,7 +63,6 @@ void tank::interact(wall * wall){
 	}
 }
 
-//kill the tank and the bullet if you collide
 void tank::interact(bullet* bullet) {
 	if (vehicle.getGlobalBounds().intersects(bullet->sprite.getGlobalBounds())) {
 		bullet->death_flag = true;
@@ -72,11 +70,12 @@ void tank::interact(bullet* bullet) {
 	}
 }
 
-void tank::rotate_turret(sf::Vector2i point) {
-	auto deltax = point.x - turret.getPosition().x;
-	auto deltay = point.y - turret.getPosition().y;
+void tank::rotate_turret(sf::Vector2f position_to_look_at) {
+	float deltax = position_to_look_at.x - turret.getPosition().x;
+	float deltay = position_to_look_at.y - turret.getPosition().y;
 	auto angle_in_radians = atan(deltay / deltax);
 	turret_rotation = angle_in_radians * 180 / 3.14159265;
+	//atan always returns between -90 and 90 so if we want to rotate left we have to rotate 180 more
 	if (deltax < 0) {
 		turret_rotation += 180;
 	}

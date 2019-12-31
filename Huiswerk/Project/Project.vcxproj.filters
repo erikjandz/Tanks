@@ -7,6 +7,7 @@
     <ClCompile Include="..\bullet.cpp" />
     <ClCompile Include="..\drawable.cpp" />
     <ClCompile Include="..\wall.cpp" />
+    <ClCompile Include="..\stationair_grey_tank.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\tank.hpp" />
@@ -15,5 +16,7 @@
     <ClInclude Include="..\drawable.hpp" />
     <ClInclude Include="..\game_data.hpp" />
     <ClInclude Include="..\wall.hpp" />
+    <ClInclude Include="..\enemy_tank.hpp" />
+    <ClInclude Include="..\stationair_grey_tank.hpp" />
   </ItemGroup>
 </Project>

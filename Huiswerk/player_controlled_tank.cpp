@@ -43,8 +43,13 @@ void player_controlled_tank::update(sf::RenderWindow& window, std::vector<bullet
 		position.x += speed;
 		vehicle.setRotation(0);
 	}
+	sf::Vector2i mouse_location = sf::Mouse::getPosition(window);
+	rotate_turret(sf::Vector2f{mouse_location});
 
-	rotate_turret(sf::Mouse::getPosition(window));
+	/*rotate_turret(sf::Vector2f(
+		static_cast<float>(mouse_location.x),
+		static_cast<float>(mouse_location.y)
+	));*/
 
 	//shoot if you can
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && cooldown == 0) {

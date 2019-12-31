@@ -23,13 +23,16 @@
     <ClCompile Include="..\drawable.cpp" />
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\player_controlled_tank.cpp" />
+    <ClCompile Include="..\stationair_grey_tank.cpp" />
     <ClCompile Include="..\tank.cpp" />
     <ClCompile Include="..\wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\bullet.hpp" />
     <ClInclude Include="..\drawable.hpp" />
+    <ClInclude Include="..\enemy_tank.hpp" />
     <ClInclude Include="..\game_data.hpp" />
+    <ClInclude Include="..\stationair_grey_tank.hpp" />
     <ClInclude Include="..\tank.hpp" />
     <ClInclude Include="..\player_controlled_tank.hpp" />
     <ClInclude Include="..\wall.hpp" />
